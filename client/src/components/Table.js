@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./Table.css";
+import PropertyDetailsView from "./PropertyDetailsView";
 
 
 export const Table = () => {
   const [propertyList, setPropertyList] = useState([]);
+  const [PropertyDetailsById, setPropertyDetailsById] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [scheme, setScheme] = useState("");
 
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+  const closeDialog = (e) => {
+    setIsDialogOpen(false);
+  };
   useEffect(() => {
     fetch("http://localhost:8080/Property/all", {
       method: "GET",
@@ -16,12 +26,52 @@ export const Table = () => {
       .then((data) => data.json())
       .then((response) => setPropertyList(response));
   }, []);
+
   const getPropertDetails = (e)=>{
     let tr = e.target.closest('tr');
     let td = tr.querySelector('#propertyId');
     let propertyId = td.textContent;
-  
-    console.log(propertyId);
+    let viewScheme = tr.querySelector('#viewPropertyDetails');
+    if (viewScheme.id === "viewPropertyDetails"){
+      console.log(viewScheme);
+      setScheme("views");
+    }
+
+    fetch ("http://localhost:8080/Property/PropertyDetailsById", {
+      method : "POST",
+      headers : {
+        "Accept" : "application/json",
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({_id: propertyId})
+    }).then((data) => data.json())
+    .then((response) => {
+      setPropertyDetailsById(response);
+      openDialog();
+  });
+  };
+  const getPropertForDetails = (e)=>{
+    let tr = e.target.closest('tr');
+    let td = tr.querySelector('#propertyId');
+    let propertyId = td.textContent;
+    let editScheme = tr.querySelector('#editPropertyDetails');
+    if (editScheme.id === "editPropertyDetails"){
+      console.log(editScheme);
+      setScheme("edit");
+    }
+
+    fetch ("http://localhost:8080/Property/PropertyDetailsById", {
+      method : "POST",
+      headers : {
+        "Accept" : "application/json",
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({_id: propertyId})
+    }).then((data) => data.json())
+    .then((response) => {
+      setPropertyDetailsById(response);
+      openDialog();
+  });
   };
   return (
     <>
@@ -57,7 +107,7 @@ export const Table = () => {
                       <td>03</td>
                       <td>
                         <span><i className="fa-regular fa-eye" id="viewPropertyDetails" onClick={getPropertDetails}></i></span>
-                        <span><i className="fa-solid fa-pencil"></i></span>
+                        <span><i className="fa-solid fa-pencil" id="editPropertyDetails" onClick={getPropertForDetails}></i></span>
                       </td>
                     </tr>
             );
@@ -66,7 +116,13 @@ export const Table = () => {
           </tbody>
         </table>
       </div>
-      
+      {isDialogOpen && (
+        <PropertyDetailsView 
+        PropertyDetailsById={PropertyDetailsById}
+        onClose={closeDialog}
+        scheme={scheme}
+      />
+      )}
     </>
   );
 };

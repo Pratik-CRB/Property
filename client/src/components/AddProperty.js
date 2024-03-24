@@ -7,7 +7,7 @@ import { Header } from "./Header";
 import { SideMenu } from "./SideMenu";
 import "./AddProperty.css";
 
-function AddProperty({ onSubmit }) {
+function AddProperty({ onSubmit, submitBtn }) {
   const steps = ["BasicInfo", "PropertyDetails", "LocationInfo", "GeneralInfo"];
   const [currentStep, setCurrentStep] = useState(0);
   let [btnText, setBtnText] = useState("Previous");
@@ -62,9 +62,17 @@ function AddProperty({ onSubmit }) {
         {currentStep === 3 && <GeneralInfo onChange={handleChange} />}
       </div>
       <div className="stepProgressingBtns">
+      <button
+          className="btnCancel"
+          style={currentStep===0 ? {display:"block"} : {display:"none"}}
+          onClick={submitBtn}
+        >
+          Cancel
+        </button>
         <button
           className="prev-btn"
           disabled={currentStep === 0}
+          style={currentStep===0 ? {display:"none"} : {display:"block"}}
           onClick={handlePrevious}
         >
           {setBtnText}

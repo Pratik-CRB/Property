@@ -54,4 +54,32 @@ router.get("/all", async (req, res) => {
   }
 });
 
+router.post("/PropertyDetailsById", async (req, res) => {
+    const {_id} = req.body;
+    console.log(_id);
+
+    try {
+        //Never use the following line
+        // let objectId = mongoose.Types.ObjectId(_id);
+        // console.log(objectId);
+
+        try {
+            let data = await Property.findOne({ _id: _id });
+            
+            if (!data) {
+                return res.status(404).json({ message: "Property not found" });
+            }
+
+            res.send(data);
+        } catch (e) {
+            console.error("Error fetching property details:", e); // Log the error for debugging
+            res.status(500).json({ message: "Failed to fetch property details" });
+        }
+    } catch (e) {
+        console.error("Invalid _id format:", e); // Log the error for debugging
+        return res.status(400).json({ message: "Invalid _id format" });
+    }
+});
+
+
 module.exports = router;

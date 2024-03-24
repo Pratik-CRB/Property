@@ -7,14 +7,29 @@ import { BasicInfo } from "./InputForm/BasicInfo";
 import { Table } from "./Table";
 
 export const Body = () => {
+
+  const [isAddPropertyVisible, setIsAddPropertyVisible] = useState(false);
+
+  const handleButtonAddProperty = () => {
+    setIsAddPropertyVisible(!isAddPropertyVisible); // Toggle the visibility state
+  };
   return (
     <div className="mainPageContent">
       <SideMenu />
       <div className="rightSideContents">
         <Header />
         <div className="Form-Content">
-          <AddProperty /> 
-        </div> 
+          <button className="btnAddProperty" onClick={handleButtonAddProperty}>
+            Add Property
+          </button>
+          <div className="Table-tbl" style={{ display: isAddPropertyVisible ? 'none' : 'block' }}>
+            <Table/>
+          </div>
+          <div className="AddProperty-add" style={{ display: isAddPropertyVisible ? 'block' : 'none' }}>
+          <AddProperty submitBtn={handleButtonAddProperty} />
+          </div>
+          
+        </div>
       </div>
     </div>
   );
