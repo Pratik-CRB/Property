@@ -1,0 +1,46 @@
+.prev-btn{
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top:95%;
+    left:45%;
+    background-color: #6AB4F8;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    border-radius: 500px;
+    padding: 1px;
+    border: none;
+    font-weight: bold;
+    
+}
+.nxt-btn{
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top:95%;
+    left:60%;
+    background-color: #4C57B6;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    border-radius: 500px;
+    padding: 1px;
+    border: none;
+    font-weight: bold;
+}
+.btnAddProperty{
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top:95%;
+    left:60%;
+    background-color: #4C57B6;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    border-radius: 500px;
+    padding: 1px;
+    border: none;
+    font-weight: bold;
+}
