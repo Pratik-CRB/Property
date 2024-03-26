@@ -635,7 +635,7 @@ const PropertyDetailsView = ({ PropertyDetailsById, onClose, scheme }) => {
                       name="Furnished"
                       placeholder="Select Furnished"
                       value={PropertyDetailsById.Furnished}
-                     onChange={
+                      onChange={
                         scheme !== "views"
                           ? (e) => {
                               const newValue = e.target.value;
@@ -1088,13 +1088,17 @@ const PropertyDetailsView = ({ PropertyDetailsById, onClose, scheme }) => {
           </button>
         ) : (
           <>
-          <button type="button" id="update-prop" onClick={handleUpdateProperty}>
-            Update
-          </button>
-          <button type="button" onClick={(e) => onClose(e)}>
-          Close
-        </button>
-        </>
+            <button
+              type="button"
+              id="update-prop"
+              onClick={handleUpdateProperty}
+            >
+              Update
+            </button>
+            <button type="button" onClick={(e) => onClose(e)}>
+              Close
+            </button>
+          </>
         )}
       </div>
     </div>
