@@ -1,12 +1,16 @@
 .table{
+    position: absolute;
+    top: 25%;
+    left: 18%;
     border-collapse: collapse;
     margin: 25px 0 0 20px;
     font-size: 0.9em;
     min-width: 400px;
-    width: 60%;
+    width: 80%;
     border: 2px solid #dddddd;
     border-radius: 20px;
     display: flex;
+    
     flex-direction: column;
 }
 .table-head tr{
@@ -35,4 +39,9 @@ tbody td img {
 }
 #viewPropertyDetails{
     margin-right: 15px;
+}
+#Status{
+    background-color: #F5FAF5;
+    color: #416899;
+    border-radius: 20%;
 }

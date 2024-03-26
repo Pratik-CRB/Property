@@ -103,7 +103,7 @@ export const Table = () => {
                       <td>{val.Mobile}</td>
                       <td>{val.Area}</td>
                       <td>02</td>
-                      <td>Sold</td>
+                      <td id="Status">Sold</td>
                       <td>03</td>
                       <td>
                         <span><i className="fa-regular fa-eye" id="viewPropertyDetails" onClick={getPropertDetails}></i></span>

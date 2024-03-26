@@ -7,7 +7,6 @@ import { BasicInfo } from "./InputForm/BasicInfo";
 import { Table } from "./Table";
 
 export const Body = () => {
-
   const [isAddPropertyVisible, setIsAddPropertyVisible] = useState(false);
 
   const handleButtonAddProperty = () => {
@@ -19,16 +18,25 @@ export const Body = () => {
       <div className="rightSideContents">
         <Header />
         <div className="Form-Content">
-          <button className="btnAddProperty" onClick={handleButtonAddProperty}>
+          <button
+            className="btnAddProperty"
+            style={{ display: isAddPropertyVisible ? "none" : "block" }}
+            onClick={handleButtonAddProperty}
+          >
             Add Property
           </button>
-          <div className="Table-tbl" style={{ display: isAddPropertyVisible ? 'none' : 'block' }}>
-            <Table/>
+          <div
+            className="Table-tbl"
+            style={{ display: isAddPropertyVisible ? "none" : "block" }}
+          >
+            <Table />
           </div>
-          <div className="AddProperty-add" style={{ display: isAddPropertyVisible ? 'block' : 'none' }}>
-          <AddProperty submitBtn={handleButtonAddProperty} />
+          <div
+            className="AddProperty-add"
+            style={{ display: isAddPropertyVisible ? "block" : "none" }}
+          >
+            <AddProperty submitBtn={handleButtonAddProperty} />
           </div>
-          
         </div>
       </div>
     </div>

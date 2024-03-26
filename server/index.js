@@ -6,7 +6,7 @@ const Property = require('./Routes/Property')
 
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cors())
 
 const PORT = 8080;
@@ -17,3 +17,6 @@ app.use("/Property", Property)
 app.listen(PORT,()=>{
     console.log(`App is listening is ${PORT}`)
 })
+
+
+

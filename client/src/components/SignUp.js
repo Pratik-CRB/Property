@@ -20,9 +20,8 @@ export const SignUp = () => {
       alert(response.message);
       navigate('/SignIn')
     })
-    
+
   }
-  
 
   return (
     <div className="SignUp">
@@ -37,7 +36,7 @@ export const SignUp = () => {
             placeholder="Mail ID"
             onChange={(e) => setForm({...form, UserId:e.target.value})}
             className="MailId"
-            required 
+            required
           ></input>
           <input
             name="Password"
@@ -66,3 +65,5 @@ export const SignUp = () => {
     </div>
   );
 };
+
+

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignIn.css";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+
 
 export const SignIn = () => {
   const [form, setForm] = useState({});
@@ -9,22 +9,28 @@ export const SignIn = () => {
 
   const submitData = (e) => {
     e.preventDefault();
-    // fetch("http://localhost:8080/SignUp/SignIn", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(form)
-    // })
-    axios.post('http://localhost:8080/SignUp/SignIn', {body: JSON.stringify(form)})
-      .then(result => {
-        console.log(result)
-        if(result.data === "Success"){
-          navigate('/Body')
-        }
-      })
-      .catch(err => console.log(err))
+    fetch("http://localhost:8080/SignUp/SignIn", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form)
+    }).then((data)=> data.json())
+    .then((response) => {
+      if (response.message == "success"){
+        alert(response.message);
+        navigate('/Body')
+      }
+      else if (response.message == "user not found.\nKindly create a user using SignUp"){
+        alert(response.message);
+        navigate('/SignUp')
+      }else{
+        alert(response.message);
+      }
+      
+    })
+    
   };
 
   return (
@@ -37,8 +43,6 @@ export const SignIn = () => {
         <form
           className="form-signin"
           onSubmit={submitData}
-          action=""
-          method="GET"
         >
           <input
             name="UserId"
@@ -71,3 +75,5 @@ export const SignIn = () => {
     </div>
   );
 };
+
+
