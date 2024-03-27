@@ -86,7 +86,7 @@ function AddProperty({ onSubmit, submitBtn }) {
           {setNextBtn}
         </button>
         <button
-          className="btnAddProperty"
+          className="btnAddPropertySubmit"
           style={currentStep===3 ? {display:"block"} : {display:"none"}}
           onClick={handleSubmit}
         >
