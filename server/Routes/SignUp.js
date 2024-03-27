@@ -4,7 +4,7 @@ const User = require("../models/SignUp");
 const SignIn = require("../models/SignIn");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/Property");
+mongoose.connect("mongodb+srv://pratikbulkunde03:VjTmW3TV5nJtXjqT@cluster0.1wzmt7d.mongodb.net/Property?retryWrites=true&w=majority&appName=Cluster0");
 
 router.post("/SignIn", async (req, res) => {
   const { UserId, Password } = req.body;

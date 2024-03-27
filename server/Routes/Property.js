@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const multer = require("multer");
 
-mongoose.connect("mongodb://127.0.0.1:27017/Property").then(() => {
-  console.log("Connected");
+mongoose.connect("mongodb+srv://pratikbulkunde03:VjTmW3TV5nJtXjqT@cluster0.1wzmt7d.mongodb.net/Property?retryWrites=true&w=majority&appName=Cluster0").then(() => {
+  console.log("Connected to MongoDb");
 });
 const localStorage = multer.diskStorage({
   destination: (req, file, cb) => {
